@@ -32,13 +32,6 @@ export default {
       },
     };
   },
-
-  // Модель для валидации, которую Vuelidate превратит в computed-поле $v
-
-  created() {
-    //reacting on child component events with showing error span
-  },
-  methods: {},
 };
 </script>
 
