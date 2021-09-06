@@ -3,11 +3,13 @@ export default {
     return {};
   },
   methods: {
+    // Отображает сообщение о некорректности введенных данных, передает данные в form
     showErrorSpan(name, target) {
       console.log(this.form, name, target);
       var span = document.createElement("span");
       span.classList.add("alert");
 
+      // Выбираем сообщение для подписи проблемы
       if (name != null) {
         span.innerText = this.alerts[name]
           ? this.alerts[name]
@@ -19,6 +21,7 @@ export default {
         console.log(this.$v.form[name].$error);
       } else span.innerText = "Введите в правильном формате";
 
+      // Передаем в form значения (кроме v-model полей)
       if (
         name != "bDate" &&
         name != "date" &&
@@ -28,6 +31,7 @@ export default {
       )
         this.form[name] = target.value;
 
+      // Ищем previosSibling для нашего span
       var rootEl = target.parentElement.classList.contains("group")
         ? target.parentElement.classList.contains("clm")
           ? target.parentElement.parentElement
@@ -35,6 +39,7 @@ export default {
         : target;
       var re = rootEl;
 
+      // Удаляем такие же предупреждения, как хотим добавить
       while (rootEl.nextSibling) {
         if (rootEl.nextSibling.tagName == "SPAN") {
           if (this.alerts != undefined)
@@ -46,10 +51,12 @@ export default {
         rootEl = rootEl.nextSibling;
       }
 
+      // Добавляем предупреждение
       if (name === null || this.$v.form[name].$error)
         re.parentElement.insertBefore(span, re.nextSibling);
     },
 
+    // Показывает незаполненные обязательные поля перед отправкой формы или переходом
     checkRequired() {
       var requiredFields = document
         .getElementsByClassName("default-form")[0]
