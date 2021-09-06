@@ -20,9 +20,11 @@
 <script>
 import funcs from "./mixins/func";
 
+// Обеспечиваем навигацию по страницам и submit
 export default {
   mixins: [funcs],
   methods: {
+    // Проверяем верность введенных на этапе данных, выводим предупреждения, пересылаем данные в корневое хранилище
     move(group) {
       if (group === "+") {
         this.$parent.$v.$touch();
@@ -38,6 +40,8 @@ export default {
         this.$root.activeForm -= 1;
       }
     },
+
+    // Пересылаем данные заполненной страницы в корневое хранилище
     commitFormChanges() {
       if (this.$root.activeForm === 1) this.$root.form = this.$parent.form;
       else if (this.$root.activeForm === 2)
@@ -46,6 +50,8 @@ export default {
         this.$root.form["passport"] = this.$parent.form;
       console.log(this.$root.form);
     },
+
+    // Удаляем данные страницы при переходе назад
     undoChanges() {
       if (this.$root.activeForm === 2) this.$root.form["address"] = null;
       else if (this.$root.activeForm === 3) this.$root.form["passport"] = null;
