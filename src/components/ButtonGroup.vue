@@ -73,6 +73,14 @@ export default {
   position: absolute;
   bottom: 50px;
   left: 50px;
+
+  @media screen and (max-width: 767px) {
+    position: relative;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+
   button {
     transition: 0.2s;
     flex: 1;

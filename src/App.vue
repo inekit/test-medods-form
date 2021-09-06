@@ -43,30 +43,34 @@ export default {
 </script>
 
 <style lang="scss">
-.two-clm {
-  display: flex;
-  justify-content: space-between;
-  & > * {
-    display: block;
-    flex: 1;
-    max-width: 48%;
-    & > input,
-    select {
-      margin-top: 10px;
+.two-clm,
+.three-clm {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    & > * {
+      display: block;
+      flex: 1;
+      max-width: 48%;
+      & > input,
+      select {
+        margin-top: 10px;
+      }
+    }
+  }
+  @media screen and (max-width: 768px) {
+    & > div.clm {
+      & > * {
+        margin: 15px 0;
+      }
     }
   }
 }
 
 .three-clm {
-  display: flex;
-  justify-content: space-between;
-  & > * {
-    display: block;
-    flex: 1;
-    max-width: 31%;
-    & > input,
-    select {
-      margin-top: 10px;
+  @media screen and (min-width: 768px) {
+    & > * {
+      max-width: 31%;
     }
   }
 }
@@ -86,6 +90,18 @@ export default {
   min-width: 400px;
   max-width: 800px;
   height: calc(100vh - 200px);
+
+  @media screen and (max-width: 767px) {
+    min-width: unset;
+    width: 80%;
+    padding: 10%;
+    top: 0;
+    left: 0 !important;
+    transform: unset;
+    height: fit-content;
+    min-height: 100%;
+  }
+
   &.active ~ div {
     left: 70%;
   }
@@ -124,8 +140,8 @@ select {
 
   @media screen and (max-width: 767px) {
     padding: 8px 16px;
-    line-height: 20px;
-    font-size: 12px;
+    line-height: 30px;
+    font-size: 16px;
   }
   font-weight: 500;
   font-family: inherit;
@@ -176,6 +192,9 @@ select {
 
 .form-group {
   display: flex;
+  @media screen and (max-width: 767px) {
+    display: block;
+  }
   & > span,
   input,
   select {
@@ -196,13 +215,16 @@ select {
     &:first-child:last-child {
       border-radius: 6px;
     }
+    @media screen and (max-width: 767px) {
+      border-radius: 6px !important;
+      margin: 15px 0 !important;
+    }
   }
   input,
   select {
     position: relative;
     z-index: 1;
     flex: 1 1 auto;
-    width: 1%;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -252,5 +274,22 @@ select {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
 }
 </style>
