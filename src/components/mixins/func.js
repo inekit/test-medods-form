@@ -53,7 +53,7 @@ export default {
     checkRequired() {
       var requiredFields = document
         .getElementsByClassName("default-form")[0]
-        .querySelectorAll("[required]");
+        .querySelectorAll(".active [required]");
 
       requiredFields.forEach((field) => {
         //console.log(field.value);
